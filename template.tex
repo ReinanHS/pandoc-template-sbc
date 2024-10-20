@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,final]{article} % colocar final para publicar
+
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage{ifdraft}
+\setkeys{Gin}{draft=false} % permite exibir as imagens mesmo estando em draft mode
+\usepackage{url}
+
+\usepackage[]{subfigure}
+
+\usepackage[brazil]{babel}   
+\usepackage[utf8]{inputenc}
+
+     
+\sloppy
+
+\title{$title$}
+\author{$author$}
+
+\address{Curso 1 -- $instituicao$ \\
+  $address$ \\
+  \email{$email$}
+}
+
+% Keywords command
+\providecommand{\keywords}[1]
+{
+    \textbf{\\\textit{ Keywords: }} #1
+}
+
+% Keywords command
+\providecommand{\PalavrasChaves}[1]
+{
+  \textbf{\\Palavras-Chave: } #1
+}
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract}
+  $abstract$
+  \\ \keywords{$keywords$}
+\end{abstract}
+     
+\begin{resumo} 
+  $resumo$
+  \\ \PalavrasChaves{$palavras_chave$}
+\end{resumo}
+
+% Conteúdo principal
+$body$
+
+\bibliographystyle{sbc}
+\bibliography{$bibliography$}
+
+\end{document}
