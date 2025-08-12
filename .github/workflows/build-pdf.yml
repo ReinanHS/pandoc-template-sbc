@@ -20,11 +20,7 @@ jobs:
 
       - name: Run Commands
         run: |
-          pandoc -v || true
-          latexmk -v || true
-          xelatex --version || true
-          pdflatex --version || true
-          pandoc -s main.md -o arquivo.pdf --template=template.tex --bibliography=referencias.bib --biblatex --pdf-engine=latexmk
+          pandoc -s main.md -o arquivo.pdf --template=template.tex --bibliography=referencias.bib --biblatex --pdf-engine=latexmk || true
       - name: Archive pandoc artifacts
         uses: actions/upload-artifact@v4
         with:
