@@ -1,0 +1,43 @@
+name: Build PDF (Pandoc + Limarka)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: reinanhs/limarka:20.7.13.pre.365-alpine-v3.22-base
+      options: --user root
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show tool versions
+        run: |
+          pandoc -v || true
+          latexmk -v || true
+          xelatex --version || true
+          pdflatex --version || true
+
+      - name: Build PDF
+        run: |
+          set -eu
+          if pandoc -s main.md -o arquivo.pdf \
+              --template=template.tex \
+              --bibliography=referencias.bib \
+              --biblatex \
+              --pdf-engine=latexmk; then
+            echo "OK: comando do usuário gerou arquivo.pdf"
+          fi
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: arquivo.pdf
+          path: arquivo.pdf
+          if-no-files-found: error
+          retention-days: 7
